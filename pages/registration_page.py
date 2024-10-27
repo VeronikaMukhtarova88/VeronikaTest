@@ -1,3 +1,5 @@
+from os import path
+
 from playwright.sync_api import expect
 from playwright.sync_api import Page, expect
 
@@ -47,14 +49,12 @@ class RegistrationPage:
         self.page.locator("#subjectsInput").fill("Test")
 
     def hobbies_click(self):
-        self.page.locator("#hobbies-checkbox-2").check()
-        self.page.get_by_text("Music").click()
+        self.page.get_by_text("Reading").check()
+        self.page.get_by_text("Music").check()
 
     def select_picture_click(self):
         self.page.get_by_label("Select picture").click()
-
-    def uploadfile_set_input_files(self):
-        self.page.get_by_label("Select picture").set_input_files("IMG-f18e355a5b3a53e62b6b027263ac4fbc-V.jpg")
+        self.page.set_input_files("#uploadPicture", './tests/file.txt')
 
     def address_click(self):
         self.page.get_by_placeholder("Current Address").click()
