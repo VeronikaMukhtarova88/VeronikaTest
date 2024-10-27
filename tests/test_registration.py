@@ -18,7 +18,6 @@ def test_add_todo(page:Page):
     registration_page.subject_fill()
     registration_page.hobbies_click()
     registration_page.select_picture_click()
-    registration_page.uploadfile_set_input_files()
     registration_page.address_click()
     registration_page.address_fill()
     registration_page.select_state_click()

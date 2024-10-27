@@ -1,83 +1,76 @@
 from os import path
 
+from playwright.sync_api import expect
 from playwright.sync_api import Page, expect
-
 
 class RegistrationPage:
 
     def __init__(self, page: Page):
         self.page = page
-        self.first_name = page.get_by_placeholder("First Name")
-        self.last_name = page.get_by_placeholder("Last Name")
-        self.email = page.get_by_placeholder("name@example.com")
-        self.female = page.get_by_text("Female")
-        self.mobile = page.get_by_placeholder("Mobile Number")
-        self.data_of_birthday1 = page.locator("#dateOfBirthInput")
-        self.data_of_birthday2 = page.get_by_text("13141516171819")
-        self.subject_find = page.locator(".subjects-auto-complete__value-container")
-        self.subject_input = page.locator("#subjectsInput")
-        self.hobbies1 = page.get_by_text("Reading")
-        self.hobbies2 = page.get_by_text("Music")
-        self.select_picture_find = page.get_by_label("Select picture")
-        self.address_input = page.get_by_placeholder("Current Address")
-        self.select_state_find = page.locator("#state svg")
-        self.select_state_input = page.get_by_text("Uttar Pradesh", exact=True)
-        self.select_city_find = page.locator("#city svg")
-        self.select_city_input = page.get_by_text("Agra", exact=True)
-        self.submit_button = page.get_by_role("button", name="Submit")
 
-    def navigate(self):
-        self.page.goto("https://demoqa.com/automation-practice-form", timeout=30000)
+    def open(self):
+        self.page.goto("https://demoqa.com/automation-practice-form", timeout=60000)
 
+    def firstname_click(self):
+        self.page.get_by_placeholder("First Name").click()
 
-    def firstname_enter(self):
-        self.first_name.click()
-        self.first_name.fill("Veronika")
+    def firstname_fill(self):
+        self.page.get_by_placeholder("First Name").fill("Veronika")
 
-    def lastname_enter(self):
-        self.last_name.click()
-        self.last_name.fill("Test")
+    def lastname_click(self):
+        self.page.get_by_placeholder("Last Name").click()
 
-    def email_enter(self):
-        self.email.click()
-        self.email.fill("test@mail.ru")
+    def lastname_fill(self):
+        self.page.get_by_placeholder("Last Name").fill("Test")
+
+    def email_click(self):
+        self.page.get_by_placeholder("name@example.com").click()
+
+    def email_fill(self):
+        self.page.get_by_placeholder("name@example.com").fill("test@mail.ru")
 
     def female_click(self):
-        self.female.click()
+        self.page.get_by_text("Female").click()
 
-    def mobile_enter(self):
-        self.mobile.click()
-        self.mobile.fill("9888888888")
+    def mobile_click(self):
+        self.page.get_by_placeholder("Mobile Number").click()
 
-    def data_of_birthday_enter(self):
-        self.data_of_birthday1.click()
-        self.data_of_birthday2.click()
+    def mobile_fill(self):
+        self.page.get_by_placeholder("Mobile Number").fill("9888888888")
 
-    def subject_enter(self):
-        self.subject_find.click()
-        self.subject_input.fill("Test")
+    def data_of_birthday_click(self):
+        self.page.locator("#dateOfBirthInput").click()
+        self.page.get_by_text("13141516171819").click()
 
-    def hobbies_check(self):
-        self.hobbies1.check()
-        self.hobbies2.check()
+    def subject_click(self):
+        self.page.locator(".subjects-auto-complete__value-container").click()
 
-    def select_picture_enter(self):
-        self.select_picture_find.click()
+    def subject_fill(self):
+        self.page.locator("#subjectsInput").fill("Test")
+
+    def hobbies_click(self):
+        self.page.get_by_text("Reading").check()
+        self.page.get_by_text("Music").check()
+
+    def select_picture_click(self):
+        self.page.get_by_label("Select picture").click()
         self.page.set_input_files("#uploadPicture", './tests/file.txt')
 
-    def address_enter(self):
-        self.address_input.click()
-        self.address_input.fill("Volzhsky, Olomoutskaya 5")
+    def address_click(self):
+        self.page.get_by_placeholder("Current Address").click()
+
+    def address_fill(self):
+        self.page.get_by_placeholder("Current Address").fill("Volzhsky, Olomoutskaya 5")
 
     def select_state_click(self):
-        self.select_state_find.click()
-        self.select_state_input.click()
+        self.page.locator("#state svg").click()
+        self.page.get_by_text("Uttar Pradesh", exact=True).click()
 
     def select_city_click(self):
-        self.select_city_find.click()
-        self.select_city_input.click()
+        self.page.locator("#city svg").click()
+        self.page.get_by_text("Agra", exact=True).click()
 
     def submit_click(self):
-        self.submit_button.click()
+        self.page.get_by_role("button", name="Submit").click()
 
 
