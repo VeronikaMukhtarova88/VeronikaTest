@@ -1,5 +1,3 @@
-from os import path
-
 from playwright.sync_api import expect
 from playwright.sync_api import Page, expect
 
