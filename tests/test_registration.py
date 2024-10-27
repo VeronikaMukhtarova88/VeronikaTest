@@ -14,7 +14,7 @@ def test_add_todo(page:Page):
     registration_page.mobile_click()
     registration_page.mobile_fill()
     registration_page.data_of_birthday_click()
-    registration_page.submit_click()
+    registration_page.subject_click()
     registration_page.subject_fill()
     registration_page.hobbies_click()
     registration_page.select_picture_click()
