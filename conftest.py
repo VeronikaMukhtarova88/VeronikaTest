@@ -1,5 +1,5 @@
 import pytest
-from playwright.sync_api import Page
+from playwright.async_api import Page
 from pages.registration_page import RegistrationPage
 
 @pytest.fixture()

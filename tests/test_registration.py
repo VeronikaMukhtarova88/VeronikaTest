@@ -1,16 +1,13 @@
 import pytest
 import allure
-from playwright.async_api import Page
-from pages.registration_page import RegistrationPage
 
 @allure.feature('Practice Form')
 @allure.story('Registration with correct data')
 @pytest.mark.parametrize('credentials1, credentials2', [
     ('user@mail.ru', '8888888888')
 ])
-def test_registration_valid_data(page:Page, credentials1, credentials2):
+def test_registration_valid_data(page, credentials1, credentials2, registration_page):
     with allure.step('Open registration form'):
-        registration_page = RegistrationPage(page)
         registration_page.navigate()
     with allure.step('Input fields'):
         registration_page.firstname_enter()
@@ -33,9 +30,8 @@ def test_registration_valid_data(page:Page, credentials1, credentials2):
 @pytest.mark.parametrize('credentials1, credentials2', [
     ('user@mail', '98888')
 ])
-def test_registration_invalid_data(page:Page, credentials1, credentials2):
+def test_registration_invalid_data(page, credentials1, credentials2, registration_page):
     with allure.step('Open registration form'):
-        registration_page = RegistrationPage(page)
         registration_page.navigate()
     with allure.step('Input fields'):
         registration_page.firstname_enter()
@@ -58,9 +54,8 @@ def test_registration_invalid_data(page:Page, credentials1, credentials2):
 @pytest.mark.parametrize('credentials1', [
     ('user@mail.ru')
 ])
-def test_registration_required_fields_empty(page:Page, credentials1):
+def test_registration_required_fields_empty(page, credentials1, registration_page):
     with allure.step('Open registration form'):
-        registration_page = RegistrationPage(page)
         registration_page.navigate()
     with allure.step('Input fields'):
         registration_page.email_enter(credentials1)
