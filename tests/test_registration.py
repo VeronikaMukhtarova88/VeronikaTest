@@ -5,9 +5,10 @@ from pages.registration_page import RegistrationPage
 
 @allure.feature('Practice Form')
 @allure.story('Registration with correct data')
-def test_registration_valid_data(page:Page):
-    credentials1 = 'user@mail.ru'
-    credentials2 = '8888888888'
+@pytest.mark.parametrize('credentials1, credentials2', [
+    ('user@mail.ru', '8888888888')
+])
+def test_registration_valid_data(page:Page, credentials1, credentials2):
     with allure.step('Open registration form'):
         registration_page = RegistrationPage(page)
         registration_page.navigate()
@@ -29,9 +30,10 @@ def test_registration_valid_data(page:Page):
 
 @allure.feature('Practice Form')
 @allure.story('Registration with incorrect data')
-def test_registration_invalid_data(page:Page):
-    credentials1 = 'user@mail'
-    credentials2 = '98888'
+@pytest.mark.parametrize('credentials1, credentials2', [
+    ('user@mail', '98888')
+])
+def test_registration_invalid_data(page:Page, credentials1, credentials2):
     with allure.step('Open registration form'):
         registration_page = RegistrationPage(page)
         registration_page.navigate()
@@ -53,8 +55,10 @@ def test_registration_invalid_data(page:Page):
 
 @allure.feature('Practice Form')
 @allure.story('Registration with empty required fields')
-def test_registration_required_fields_empty(page:Page):
-    credentials1 = 'user@mail.ru'
+@pytest.mark.parametrize('credentials1', [
+    ('user@mail.ru')
+])
+def test_registration_required_fields_empty(page:Page, credentials1):
     with allure.step('Open registration form'):
         registration_page = RegistrationPage(page)
         registration_page.navigate()
