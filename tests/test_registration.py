@@ -28,7 +28,7 @@ def test_registration_valid_data(page, credentials1, credentials2, registration_
 @allure.feature('Practice Form')
 @allure.story('Registration with incorrect data')
 @pytest.mark.parametrize('credentials1, credentials2', [
-    ('user@mail', '98888000')
+    ('user@mail', '98888')
 ])
 def test_registration_invalid_data(page, credentials1, credentials2, registration_page):
     with allure.step('Open registration form'):
